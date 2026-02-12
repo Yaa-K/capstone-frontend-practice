@@ -22,31 +22,45 @@
     <h2 id="result"></h2>
 
     <script>
-        const form = document.getElementById("predictForm");
-
-        form.addEventListener("submit", async (e) => {
+          console.log("JS loaded ✅");
+        
+          const form = document.getElementById("predictForm");
+          const resultEl = document.getElementById("result");
+        
+          if (!form) alert("Form not found ❌ (check id='predictForm')");
+          if (!resultEl) alert("Result element not found ❌ (check id='result')");
+        
+          form.addEventListener("submit", (e) => {
             e.preventDefault();
+            alert("Button works ✅");
+            resultEl.innerText = "Clicked ✅";
+          });
 
-            const attendance = document.getElementById("attendance").value;
-            const score = document.getElementById("score").value;
-            const login = document.getElementById("login").value;
+        // const form = document.getElementById("predictForm");
 
-            const response = await fetch("https://capstone-backend-practice.onrender.com/predict", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    attendance: parseInt(attendance),
-                    average_score: parseFloat(score),
-                    login_frequency: parseInt(login)
-                })
-            });
+        // form.addEventListener("submit", async (e) => {
+        //     e.preventDefault();
 
-            const data = await response.json();
+        //     const attendance = document.getElementById("attendance").value;
+        //     const score = document.getElementById("score").value;
+        //     const login = document.getElementById("login").value;
 
-            document.getElementById("result").innerText =
-                `Risk Level: ${data.risk_level} | Score: ${data.risk_score}`;
+        //     const response = await fetch("https://capstone-backend-practice.onrender.com/predict", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify({
+        //             attendance: parseInt(attendance),
+        //             average_score: parseFloat(score),
+        //             login_frequency: parseInt(login)
+        //         })
+        //     });
+
+        //     const data = await response.json();
+
+        //     document.getElementById("result").innerText =
+        //         `Risk Level: ${data.risk_level} | Score: ${data.risk_score}`;
         });
     </script>
 </body>
